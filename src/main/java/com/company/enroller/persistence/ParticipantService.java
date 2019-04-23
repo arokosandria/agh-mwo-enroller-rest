@@ -30,16 +30,17 @@ public class ParticipantService {
 		 transaction.commit();
 		 return participant;
 	 }
-	 public Participant delete(Participant participant) {
+
+	 public void delete(Participant participant) {
 		 Transaction transaction=connector.getSession().beginTransaction();
 		 connector.getSession().delete(participant);
 		 transaction.commit();
-		 return participant;
+		
 	 }
-	 public Participant update(Participant participant) {
+	 public void update(Participant participant) {
 		 Transaction transaction=connector.getSession().beginTransaction();
 		 connector.getSession().merge(participant);
 		 transaction.commit();
-		 return participant;
-	 }
-}
+		
+
+}}
