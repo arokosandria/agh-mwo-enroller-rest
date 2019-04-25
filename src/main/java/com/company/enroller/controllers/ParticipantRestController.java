@@ -50,14 +50,14 @@ public class ParticipantRestController {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	public ResponseEntity<?> deleteParticipant(@PathVariable("id") String login) {
+	public ResponseEntity<?> removeParticipant(@PathVariable("id") String login) {
 		Participant participant = participantService.findByLogin(login);
 		if (participant == null) {
 			return new ResponseEntity(
 					"Unable to delete. A participant with login " + login + " not exist.",
 					HttpStatus.NOT_FOUND);
 		}
-		participantService.delete(participant);
+		participantService.remove(participant);
 		return new ResponseEntity<Participant>(HttpStatus.NO_CONTENT);
 	}
 
