@@ -85,9 +85,12 @@ public class MeetingRestController {
 		if (meeting == null) {
 			return new ResponseEntity(HttpStatus.NOT_FOUND);
 		}
-		meetingUpdate.setId(id);
-		meetingService.updateMeeting(meetingUpdate);
-		return new ResponseEntity<Meeting>(meetingUpdate, HttpStatus.OK);
+		
+      meeting.setDate(meetingUpdate.getDate());
+	  meeting.setDescription(meetingUpdate.getDescription());
+	  meeting.setTitle(meetingUpdate.getTitle());
+	  meetingService.updateMeeting(meeting);
+	  return new ResponseEntity<Meeting>(meeting, HttpStatus.OK);
 }
 	@RequestMapping(value = "/{id}/participants/{participantLogin}", method = RequestMethod.DELETE)
     public ResponseEntity<?> removeParticipant(@PathVariable("id") Long id, @PathVariable("participantLogin") String login) {
